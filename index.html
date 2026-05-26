@@ -35,7 +35,15 @@
             <p>Tạm tính: <span id="total-price">0</span> VNĐ</p>
             <p>Giảm giá thẻ FTU (5%): -<span id="discount">0</span> VNĐ</p>
             <h3 style="color: var(--primary)">Thanh toán: <span id="final-price">0</span> VNĐ</h3>
-            <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em;" onclick="alert('Xác nhận chốt đơn thành công! Vui lòng xuống căng-tin nhận đồ.')">Chốt Đơn & Thanh Toán</button>
+            
+            <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em; background-color: #ff9800; margin-bottom: 15px;" onclick="generateQR()">Tạo QR Thanh Toán</button>
+            
+            <div id="qr-container" style="display: none; text-align: center; padding: 20px; border: 2px dashed #4CAF50; border-radius: 10px; background: white;">
+                <h4 style="margin-top: 0;">Quét mã để thanh toán</h4>
+                <img id="qr-image" src="" alt="QR Code" style="width: 250px; max-width: 100%;">
+                <p style="font-size: 0.9em; color: #666;">Nội dung: <strong id="qr-content"></strong></p>
+                <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em;" onclick="alert('Thanh toán thành công! Mã đơn của bạn đã được gửi xuống bếp.')">Tôi đã chuyển khoản xong</button>
+            </div>
         </div>
     </div>
 
