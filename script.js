@@ -212,9 +212,11 @@ function botMove() {
         move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
     }
 
+    if (move !== -1) {
     board[move] = 'O';
     updateBoardUI();
-    checkWin('O');
+    checkWin('O');    
+    }
 }
 
 function findForkMove(player) {
@@ -247,6 +249,43 @@ function findForkMove(player) {
             if (winningWays >= 2) {
                 return i;
             }
+        }
+    }
+
+    return -1;
+}
+
+function findBestMove(player) {
+
+    for (let condition of winningConditions) {
+
+        const [a, b, c] = condition;
+
+        // XX_
+        if (
+            board[a] === player &&
+            board[b] === player &&
+            board[c] === ''
+        ) {
+            return c;
+        }
+
+        // X_X
+        if (
+            board[a] === player &&
+            board[c] === player &&
+            board[b] === ''
+        ) {
+            return b;
+        }
+
+        // _XX
+        if (
+            board[b] === player &&
+            board[c] === player &&
+            board[a] === ''
+        ) {
+            return a;
         }
     }
 
