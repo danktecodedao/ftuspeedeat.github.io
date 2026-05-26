@@ -2,13 +2,44 @@
 
 :root {
     --primary: #4CAF50;
-    --bg: #f0f4f8; 
     --text: #2d3748;
     --card-bg: #ffffff;
 }
 
-body { font-family: 'Nunito', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; transition: background-color 0.5s ease; }
+/* Thêm ảnh nền đồ ăn mờ ảo */
+body { 
+    font-family: 'Nunito', sans-serif; 
+    background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop'); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--text); 
+    margin: 0; 
+    padding: 0; 
+}
 
+/* Làm mờ background của khung chứa chính để làm nổi bật nội dung */
+.container { 
+    background: rgba(255, 255, 255, 0.95); /* Nền trắng hơi trong suốt */
+    border-radius: 20px; 
+    padding: 20px; 
+    max-width: 800px; 
+    margin: -30px auto 40px; 
+    position: relative; 
+    z-index: 2; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Style cho Logo trường */
+.logo-img { 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    border: 3px solid white; 
+    object-fit: cover; 
+    margin-bottom: 10px; 
+    background-color: white;
+}
 header { background: linear-gradient(135deg, var(--primary), #2e7d32); color: white; padding: 2.5rem 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; margin-bottom: 2rem; }
 header h1 { margin: 0; font-size: 2.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
 header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
