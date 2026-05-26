@@ -80,3 +80,6 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .cell:hover { background: #e2e8f0; }
 .cell.x { color: #f44336; }
 .cell.o { color: #2196F3; }
+
+#toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 30px; padding: 12px 24px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 1rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+#toast.show { visibility: visible; opacity: 1; bottom: 50px; }
