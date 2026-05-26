@@ -455,3 +455,18 @@ function generateQR() {
 window.addEventListener('DOMContentLoaded', () => {
     setSeasonalTheme(); renderMenu();
 });
+
+// Xử lý Đăng nhập ảo (Demo)
+function handleLogin() {
+    const studentId = document.getElementById('student-id').value;
+    const studentPass = document.getElementById('student-pass').value;
+
+    if (studentId === "" || studentPass === "") {
+        alert("Vui lòng nhập đầy đủ Mã Sinh Viên và Mật khẩu!");
+        return;
+    }
+
+    // Nếu nhập đủ thì ẩn màn hình đăng nhập đi và báo thành công
+    document.getElementById('login-overlay').style.display = 'none';
+    showToast(`Xin chào sinh viên FTU: ${studentId}!`);
+}
