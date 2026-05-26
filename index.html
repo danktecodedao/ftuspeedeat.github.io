@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <img src="https://upload.wikimedia.org/wikipedia/vi/4/47/FTU_logo_2020.svg" alt="FTU Logo" class="logo-img">
+    <img src="https://upload.wikimedia.org/wikipedia/vi/1/1d/Logo_Đại_học_Ngoại_thương.png" alt="FTU Logo" class="logo-img">
     <h1 id="season-title">FTU SpeedEAT 🌸</h1>
     <p>Thẻ thành viên: <strong>FTU-SV12345 (Hạng Vàng)</strong></p>
 </header>
@@ -23,8 +23,7 @@
 
     <div id="menu" class="section active">
         <h2>Menu Hôm Nay <span class="badge">Nhiều món mới</span></h2>
-        <div id="menu-list">
-            </div>
+        <div id="menu-list"></div>
     </div>
 
     <div id="cart" class="section">
@@ -38,11 +37,11 @@
             
             <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em; background-color: #ff9800; margin-bottom: 15px;" onclick="generateQR()">Tạo QR Thanh Toán</button>
             
-            <div id="qr-container" style="display: none; text-align: center; padding: 20px; border: 2px dashed #4CAF50; border-radius: 10px; background: white;">
-                <h4 style="margin-top: 0;">Quét mã để thanh toán</h4>
-                <img id="qr-image" src="" alt="QR Code" style="width: 250px; max-width: 100%;">
-                <p style="font-size: 0.9em; color: #666;">Nội dung: <strong id="qr-content"></strong></p>
-                <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em;" onclick="alert('Thanh toán thành công! Mã đơn của bạn đã được gửi xuống bếp.')">Tôi đã chuyển khoản xong</button>
+            <div id="qr-container" style="display: none; text-align: center; padding: 20px; border: 2px dashed #4CAF50; border-radius: 10px; background: white; margin-top: 15px;">
+                <h4 style="margin-top: 0; color: #2d3748;">Quét mã qua App Ngân hàng để thanh toán</h4>
+                <img id="qr-image" src="" alt="QR Code" style="width: 250px; max-width: 100%; border: 1px solid #e2e8f0; padding: 5px; border-radius: 5px;">
+                <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Nội dung chuyển khoản: <strong id="qr-content" style="color: #f44336;"></strong></p>
+                <button class="btn" style="width: 100%; padding: 12px; font-size: 1em;" onclick="alert('Hệ thống SpeedEAT đã ghi nhận đơn hàng đang chờ thanh toán của bạn!')">Tôi đã chuyển khoản xong</button>
             </div>
         </div>
     </div>
@@ -51,13 +50,11 @@
         <div id="minigame-box">
             <h2>Góc Giải Trí</h2>
             <p>Chơi game thả ga, nhận mã giảm giá căng-tin!</p>
-            
             <div class="game-nav">
                 <button class="btn btn-game active">Cờ Caro</button>
-                <button class="btn btn-game" style="background:#888;" onclick="alert('Game 2048 đang được team Dev phát triển. Quay lại sau nhé!')">2048</button>
-                <button class="btn btn-game" style="background:#888;" onclick="alert('Rắn săn mồi đang được team Dev phát triển. Quay lại sau nhé!')">Snake</button>
+                <button class="btn btn-game" style="background:#888;" onclick="alert('Game 2048 đang được phát triển!')">2048</button>
+                <button class="btn btn-game" style="background:#888;" onclick="alert('Rắn săn mồi đang được phát triển!')">Snake</button>
             </div>
-
             <div class="caro-container">
                 <p><strong>Luật:</strong> Bạn là <span style="color:#f44336; font-weight:bold;">X</span>. Thắng Máy (<span style="color:#2196F3; font-weight:bold;">O</span>) để nhận Voucher!</p>
                 <div class="board" id="board">
@@ -77,6 +74,8 @@
         </div>
     </div>
 </div>
+
+<div id="toast">Đã thêm vào giỏ hàng!</div>
 
 <script src="script.js"></script>
 </body>
