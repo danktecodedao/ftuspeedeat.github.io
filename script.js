@@ -19,29 +19,29 @@ function setSeasonalTheme() {
 // 2. NHẬP LIỆU TOÀN BỘ MENU THEO ẢNH
 const menuData = [
     // Đồ Uống Đóng Chai
-    { id: 1, category: "Đồ Uống Đóng Chai", name: "Nước Aquafina", price: 7000, calo: 0 },
+    { id: 1, category: "Đồ Uống Đóng Chai", name: "Nước Aquafina", price: 7000, calo: 0, image: "https://vending-cdn.kootoro.com/torov-cms/upload/image/1718076636563-C%C3%A1c%20lo%E1%BA%A1i%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%A7a%20pepsi.jpg" },
     { id: 2, category: "Đồ Uống Đóng Chai", name: "C2", price: 12000, calo: 140 },
     { id: 3, category: "Đồ Uống Đóng Chai", name: "7 Up", price: 12000, calo: 140 },
     { id: 4, category: "Đồ Uống Đóng Chai", name: "Revive", price: 12000, calo: 125 },
     { id: 5, category: "Đồ Uống Đóng Chai", name: "Pepsi chai", price: 8000, calo: 150 },
     // Đồ Uống Khác
-    { id: 6, category: "Đồ Uống Khác", name: "Trà quất", price: 15000, calo: 100 },
+    { id: 6, category: "Đồ Uống Khác", name: "Trà quất", price: 15000, calo: 100, image: "https://bizweb.dktcdn.net/100/025/663/files/tra-hoa-qua-1.jpg?v=1620664269182" },
     { id: 7, category: "Đồ Uống Khác", name: "Trà đào", price: 15000, calo: 120 },
     { id: 8, category: "Đồ Uống Khác", name: "Lipton", price: 12000, calo: 80 },
     { id: 9, category: "Đồ Uống Khác", name: "Trà dâu, trà bạc hà", price: 15000, calo: 110 },
     { id: 10, category: "Đồ Uống Khác", name: "Sữa đặc nóng", price: 12000, calo: 150 },
     // Xôi (Sticky Rice)
-    { id: 11, category: "Xôi (Sticky Rice)", name: "Xôi ruốc vừng", price: 15000, calo: 400 },
+    { id: 11, category: "Xôi (Sticky Rice)", name: "Xôi ruốc vừng", price: 15000, calo: 400, image: "https://photo.znews.vn/w660/Uploaded/ngotno/2021_05_16/53734828_2222221634705369_8847531498799782887_n.jpg" },
     { id: 12, category: "Xôi (Sticky Rice)", name: "Xôi pate", price: 15000, calo: 450 },
     { id: 13, category: "Xôi (Sticky Rice)", name: "Xôi pate chả", price: 20000, calo: 550 },
     { id: 14, category: "Xôi (Sticky Rice)", name: "Xôi thịt", price: 20000, calo: 600 },
     // Bánh Mỳ (Bread)
-    { id: 15, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ trứng", price: 15000, calo: 380 },
+    { id: 15, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ trứng", price: 15000, calo: 380, image: "https://media.phunutoday.vn/files/upload_images/2016/01/21/cach-lam-banh-my-trung-ngon-1-phunutoday_vn.jpg" },
     { id: 16, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ chả", price: 15000, calo: 400 },
     { id: 17, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ pate", price: 15000, calo: 420 },
     { id: 18, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ ruốc", price: 15000, calo: 350 },
     // Bún - Phở - Mỳ
-    { id: 19, category: "Bún - Phở - Mỳ", name: "Mỳ trứng", price: 18000, calo: 400 },
+    { id: 19, category: "Bún - Phở - Mỳ", name: "Mỳ trứng", price: 18000, calo: 400, image: "https://media.phunutoday.vn/files/upload_images/2016/02/06/mon-an-phunutodayvn.jpg" },
     { id: 20, category: "Bún - Phở - Mỳ", name: "Mỳ bò", price: 30000, calo: 450 },
     { id: 21, category: "Bún - Phở - Mỳ", name: "Phở bò tái", price: 30000, calo: 550 },
     { id: 22, category: "Bún - Phở - Mỳ", name: "Phở bò chín", price: 30000, calo: 550 },
@@ -50,7 +50,7 @@ const menuData = [
     { id: 25, category: "Bún - Phở - Mỳ", name: "Bún cá", price: 35000, calo: 500 },
     { id: 26, category: "Bún - Phở - Mỳ", name: "Bún riêu bò", price: 35000, calo: 530 },
     // Món Khác
-    { id: 27, category: "Món Khác", name: "Bánh bao thập cẩm", price: 15000, calo: 350 },
+    { id: 27, category: "Món Khác", name: "Bánh bao thập cẩm", price: 15000, calo: 350, image: "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/11/29/1273358/Com-Tam-2-01.jpeg" },
     { id: 28, category: "Món Khác", name: "Bánh cuốn chả", price: 20000, calo: 450 },
     { id: 29, category: "Món Khác", name: "Cơm tấm sườn", price: 35000, calo: 650 },
     { id: 30, category: "Món Khác", name: "Cơm rang dưa bò", price: 40000, calo: 750 },
@@ -73,9 +73,15 @@ function renderMenu() {
         // In ra các món trong Danh mục đó
         const itemsInCategory = menuData.filter(item => item.category === cat);
         itemsInCategory.forEach(item => {
+            // Kiểm tra: Nếu món ăn có thuộc tính 'image' thì tạo mã HTML chứa ảnh, nếu không có thì bỏ trống
+            let imageHTML = item.image 
+                ? `<img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover; margin-right: 15px;">` 
+                : ``;
+
             list.innerHTML += `
                 <div class="menu-item">
-                    <div>
+                    ${imageHTML}
+                    <div style="flex-grow: 1;">
                         <strong>${item.name}</strong><br>
                         <small>${item.price.toLocaleString()} VNĐ | ${item.calo} kcal</small>
                     </div>
@@ -83,8 +89,6 @@ function renderMenu() {
                 </div>
             `;
         });
-    });
-}
 
 function addToCart(id) {
     const item = menuData.find(i => i.id === id);
@@ -207,7 +211,34 @@ function resetGame() {
     document.getElementById('game-result').innerText = '';
     updateBoardUI();
 }
+// 5. TẠO MÃ QR THANH TOÁN ĐỘNG (Dùng VietQR API)
+function generateQR() {
+    if (cart.length === 0) {
+        alert("Giỏ hàng đang trống. Vui lòng chọn món trước!");
+        return;
+    }
 
+    // Lấy tổng tiền cuối cùng (đã trừ chuỗi định dạng VNĐ)
+    let finalPriceText = document.getElementById('final-price').innerText.replace(/,/g, '');
+    let amount = parseInt(finalPriceText);
+
+    // Thông tin tài khoản nhận tiền (BẠN HÃY THAY BẰNG STK CỦA BẠN ĐỂ TEST THỬ)
+    const bankID = "MB"; // Ngân hàng (VD: MB, VCB, TCB)
+    const accountNo = "0191899956789"; // Số tài khoản
+    const accountName = "Hoang Trung Anh"; // Tên chủ thẻ (Viết không dấu)
+    
+    // Tạo mã đơn hàng ngẫu nhiên
+    const orderCode = "FTU" + Math.floor(Math.random() * 10000); 
+    const description = `${orderCode}`;
+
+    // Link API tạo QR của VietQR
+    const qrUrl = `https://img.vietqr.io/image/${bankID}-${accountNo}-compact2.png?amount=${amount}&addInfo=${description}&accountName=${accountName}`;
+
+    // Hiển thị mã QR lên giao diện
+    document.getElementById('qr-image').src = qrUrl;
+    document.getElementById('qr-content').innerText = description;
+    document.getElementById('qr-container').style.display = "block";
+}
 window.addEventListener('DOMContentLoaded', () => {
     setSeasonalTheme();
     renderMenu();
