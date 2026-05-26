@@ -55,8 +55,36 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .section.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Danh mục Menu */
-.category-title { background-color: #e2e8f0; padding: 8px 15px; border-radius: 8px; margin-top: 25px; color: #2d3748; font-size: 1.1rem; border-left: 4px solid var(--primary); }
+
+/* =========================================
+   PHẦN CSS MỚI SỬA LỖI ẢNH BỊ PHÓNG TO 
+   ========================================= */
+.category-header { 
+    display: flex; 
+    align-items: center; 
+    background-color: #e2e8f0; 
+    border-radius: 12px; 
+    margin-top: 30px; 
+    margin-bottom: 10px; 
+    border-left: 5px solid #f44336; 
+    overflow: hidden; 
+}
+.category-banner-img { 
+    width: 90px; 
+    height: 60px; 
+    object-fit: cover; 
+    margin-right: 15px; 
+}
+.category-title { 
+    margin: 0; 
+    color: #1a202c; 
+    font-size: 1.15rem; 
+    font-weight: 800; 
+    padding: 10px 0; 
+}
+/* ========================================= */
+
+
 .menu-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #e2e8f0; padding: 12px 0; transition: all 0.2s; }
 .menu-item:hover { transform: translateX(5px); }
 .menu-item strong { font-size: 1.1rem; color: #1a202c; }
@@ -81,5 +109,6 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .cell.x { color: #f44336; }
 .cell.o { color: #2196F3; }
 
+/* CSS cho popup thông báo nổi */
 #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 30px; padding: 12px 24px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 1rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
 #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
