@@ -1,22 +1,22 @@
-// 1. ĐỔI THEME THEO MÙA - FTU SpeedEAT
+// 1. ĐỔI THEME THEO MÙA - Cập nhật lại nhãn mới
 function setSeasonalTheme() {
     const month = new Date().getMonth() + 1;
     const root = document.documentElement;
-    let title = document.getElementById('season-title');
-    if (!title) return;
+    let seasonBadge = document.getElementById('season-title');
+    if (!seasonBadge) return;
 
     if (month >= 2 && month <= 4) { 
-        root.style.setProperty('--primary', '#4CAF50'); title.innerText = "FTU SpeedEAT Mùa Xuân 🌸"; 
+        root.style.setProperty('--primary', '#4CAF50'); seasonBadge.innerText = "Mùa Xuân 🌸"; 
     } else if (month >= 5 && month <= 7) { 
-        root.style.setProperty('--primary', '#f44336'); title.innerText = "FTU SpeedEAT Mùa Hè ☀️"; 
+        root.style.setProperty('--primary', '#f44336'); seasonBadge.innerText = "Mùa Hè ☀️"; 
     } else if (month >= 8 && month <= 10) { 
-        root.style.setProperty('--primary', '#ff9800'); title.innerText = "FTU SpeedEAT Mùa Thu 🍂"; 
+        root.style.setProperty('--primary', '#ff9800'); seasonBadge.innerText = "Mùa Thu 🍂"; 
     } else { 
-        root.style.setProperty('--primary', '#2196F3'); title.innerText = "FTU SpeedEAT Mùa Đông ❄️"; 
+        root.style.setProperty('--primary', '#2196F3'); seasonBadge.innerText = "Mùa Đông ❄️"; 
     }
 }
 
-// 2. KHO ẢNH CHO TỪNG DANH MỤC (Sẽ hiện ở thanh ngang)
+// 2. KHO ẢNH CHO TỪNG DANH MỤC
 const categoryImages = {
     "Đồ Uống Đóng Chai": "https://vending-cdn.kootoro.com/torov-cms/upload/image/1718076636563-C%C3%A1c%20lo%E1%BA%A1i%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%A7a%20pepsi.jpg",
     "Đồ Uống Khác": "https://bizweb.dktcdn.net/100/025/663/files/tra-hoa-qua-1.jpg?v=1620664269182",
@@ -33,23 +33,19 @@ const menuData = [
     { id: 3, category: "Đồ Uống Đóng Chai", name: "7 Up", price: 12000, calo: 140 },
     { id: 4, category: "Đồ Uống Đóng Chai", name: "Revive", price: 12000, calo: 125 },
     { id: 5, category: "Đồ Uống Đóng Chai", name: "Pepsi chai", price: 8000, calo: 150 },
-    
     { id: 6, category: "Đồ Uống Khác", name: "Trà quất", price: 15000, calo: 100 },
     { id: 7, category: "Đồ Uống Khác", name: "Trà đào", price: 15000, calo: 120 },
     { id: 8, category: "Đồ Uống Khác", name: "Lipton", price: 12000, calo: 80 },
     { id: 9, category: "Đồ Uống Khác", name: "Trà dâu, trà bạc hà", price: 15000, calo: 110 },
     { id: 10, category: "Đồ Uống Khác", name: "Sữa đặc nóng", price: 12000, calo: 150 },
-    
     { id: 11, category: "Xôi (Sticky Rice)", name: "Xôi ruốc vừng", price: 15000, calo: 400 },
     { id: 12, category: "Xôi (Sticky Rice)", name: "Xôi pate", price: 15000, calo: 450 },
     { id: 13, category: "Xôi (Sticky Rice)", name: "Xôi pate chả", price: 20000, calo: 550 },
     { id: 14, category: "Xôi (Sticky Rice)", name: "Xôi thịt", price: 20000, calo: 600 },
-    
     { id: 15, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ trứng", price: 15000, calo: 380 },
     { id: 16, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ chả", price: 15000, calo: 400 },
     { id: 17, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ pate", price: 15000, calo: 420 },
     { id: 18, category: "Bánh Mỳ (Bread)", name: "Bánh mỳ ruốc", price: 15000, calo: 350 },
-    
     { id: 19, category: "Bún - Phở - Mỳ", name: "Mỳ trứng", price: 18000, calo: 400 },
     { id: 20, category: "Bún - Phở - Mỳ", name: "Mỳ bò", price: 30000, calo: 450 },
     { id: 21, category: "Bún - Phở - Mỳ", name: "Phở bò tái", price: 30000, calo: 550 },
@@ -58,7 +54,6 @@ const menuData = [
     { id: 24, category: "Bún - Phở - Mỳ", name: "Bún chả", price: 35000, calo: 600 },
     { id: 25, category: "Bún - Phở - Mỳ", name: "Bún cá", price: 35000, calo: 500 },
     { id: 26, category: "Bún - Phở - Mỳ", name: "Bún riêu bò", price: 35000, calo: 530 },
-    
     { id: 27, category: "Món Khác", name: "Bánh bao thập cẩm", price: 15000, calo: 350 },
     { id: 28, category: "Món Khác", name: "Bánh cuốn chả", price: 20000, calo: 450 },
     { id: 29, category: "Món Khác", name: "Cơm tấm sườn", price: 35000, calo: 650 },
@@ -68,7 +63,6 @@ const menuData = [
 
 let cart = [];
 
-// HÀM HIỂN THỊ THÔNG BÁO NỔI (TOAST)
 function showToast(message) {
     const toast = document.getElementById("toast");
     if(toast) {
@@ -82,24 +76,18 @@ function renderMenu() {
     const list = document.getElementById('menu-list');
     if (!list) return;
     list.innerHTML = ''; 
-    
     const categories = [...new Set(menuData.map(item => item.category))];
 
     categories.forEach(cat => {
-        // Lấy ảnh đại diện cho Danh mục
         let catImg = categoryImages[cat] ? categoryImages[cat] : "https://via.placeholder.com/90x55?text=Food";
-        
-        // Render thanh tiêu đề danh mục chứa ảnh siêu đẹp
         list.innerHTML += `
             <div class="category-header">
                 <img src="${catImg}" alt="${cat}" class="category-banner-img">
                 <h3 class="category-title">${cat}</h3>
             </div>
         `;
-
         const itemsInCategory = menuData.filter(item => item.category === cat);
         itemsInCategory.forEach(item => {
-            // Render các món ăn (Chỉ hiện text, không hiện ảnh nữa)
             list.innerHTML += `
                 <div class="menu-item">
                     <div style="flex-grow: 1;">
@@ -118,7 +106,6 @@ function addToCart(id) {
     if (item) { 
         cart.push(item); 
         updateCart(); 
-        // Gọi hàm thông báo nổi khi bấm Thêm
         showToast(`Đã thêm ${item.name} vào giỏ! 🛒`);
     }
 }
@@ -221,7 +208,7 @@ function resetGame() {
     document.getElementById('game-result').innerText = ''; updateBoardUI();
 }
 
-// 5. TẠO MÃ QR THANH TOÁN ĐỘNG
+// 5. TẠO MÃ QR THANH TOÁN
 function generateQR() {
     if (cart.length === 0) { showToast("Giỏ hàng đang trống!"); return; }
     
