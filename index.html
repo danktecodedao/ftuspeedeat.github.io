@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTU SpeedEAT - Căng tin Ngoại Thương</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 id="season-title">FTU SpeedEAT 🌸</h1>
+    <p>Thẻ thành viên: <strong>FTU-SV12345 (Hạng Vàng)</strong></p>
+</header>
+
+<div class="container">
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('menu')">Thực đơn</div>
+        <div class="tab" onclick="showTab('cart')">Giỏ hàng & Calo</div>
+        <div class="tab" onclick="showTab('game')">Giải trí nhận quà</div>
+    </div>
+
+    <div id="menu" class="section active">
+        <h2>Menu Hôm Nay <span class="badge">Nhiều món mới</span></h2>
+        <div id="menu-list">
+            </div>
+    </div>
+
+    <div id="cart" class="section">
+        <h2>Khay đồ ăn của bạn</h2>
+        <ul id="cart-items" style="list-style: none; padding: 0;"></ul>
+        <div class="cart-summary">
+            <p>Tổng Calo: <span id="total-calo">0</span> kcal <small>(Khuyến nghị: < 800 kcal/bữa)</small></p>
+            <p>Tạm tính: <span id="total-price">0</span> VNĐ</p>
+            <p>Giảm giá thẻ FTU (5%): -<span id="discount">0</span> VNĐ</p>
+            <h3 style="color: var(--primary)">Thanh toán: <span id="final-price">0</span> VNĐ</h3>
+            <button class="btn" style="width: 100%; padding: 15px; font-size: 1.1em;" onclick="alert('Xác nhận chốt đơn thành công! Vui lòng xuống căng-tin nhận đồ.')">Chốt Đơn & Thanh Toán</button>
+        </div>
+    </div>
+
+    <div id="game" class="section">
+        <div id="minigame-box">
+            <h2>Góc Giải Trí</h2>
+            <p>Chơi game thả ga, nhận mã giảm giá căng-tin!</p>
+            
+            <div class="game-nav">
+                <button class="btn btn-game active">Cờ Caro</button>
+                <button class="btn btn-game" style="background:#888;" onclick="alert('Game 2048 đang được team Dev phát triển. Quay lại sau nhé!')">2048</button>
+                <button class="btn btn-game" style="background:#888;" onclick="alert('Rắn săn mồi đang được team Dev phát triển. Quay lại sau nhé!')">Snake</button>
+            </div>
+
+            <div class="caro-container">
+                <p><strong>Luật:</strong> Bạn là <span style="color:#f44336; font-weight:bold;">X</span>. Thắng Máy (<span style="color:#2196F3; font-weight:bold;">O</span>) để nhận Voucher!</p>
+                <div class="board" id="board">
+                    <div class="cell" onclick="makeMove(0)"></div>
+                    <div class="cell" onclick="makeMove(1)"></div>
+                    <div class="cell" onclick="makeMove(2)"></div>
+                    <div class="cell" onclick="makeMove(3)"></div>
+                    <div class="cell" onclick="makeMove(4)"></div>
+                    <div class="cell" onclick="makeMove(5)"></div>
+                    <div class="cell" onclick="makeMove(6)"></div>
+                    <div class="cell" onclick="makeMove(7)"></div>
+                    <div class="cell" onclick="makeMove(8)"></div>
+                </div>
+                <h3 id="game-result" style="color: var(--primary); margin-top: 15px; min-height: 25px;"></h3>
+                <button class="btn" onclick="resetGame()" style="margin-top: 10px;">Chơi Lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
