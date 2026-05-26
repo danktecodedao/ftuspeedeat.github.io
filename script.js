@@ -1,18 +1,19 @@
-// 1. ĐỔI THEME THEO MÙA - Cập nhật lại nhãn mới
+// 1. ĐỔI THEME THEO MÙA
 function setSeasonalTheme() {
     const month = new Date().getMonth() + 1;
     const root = document.documentElement;
-    let seasonBadge = document.getElementById('season-title');
-    if (!seasonBadge) return;
+    let title = document.getElementById('season-title');
+    if (!title) return;
 
+    // Đã xóa chữ "FTU SpeedEAT", chỉ giữ lại tên mùa và icon
     if (month >= 2 && month <= 4) { 
-        root.style.setProperty('--primary', '#4CAF50'); seasonBadge.innerText = "Mùa Xuân 🌸"; 
+        root.style.setProperty('--primary', '#4CAF50'); title.innerText = "Mùa Xuân 🌸"; 
     } else if (month >= 5 && month <= 7) { 
-        root.style.setProperty('--primary', '#f44336'); seasonBadge.innerText = "Mùa Hè ☀️"; 
+        root.style.setProperty('--primary', '#f44336'); title.innerText = "Mùa Hè ☀️"; 
     } else if (month >= 8 && month <= 10) { 
-        root.style.setProperty('--primary', '#ff9800'); seasonBadge.innerText = "Mùa Thu 🍂"; 
+        root.style.setProperty('--primary', '#ff9800'); title.innerText = "Mùa Thu 🍂"; 
     } else { 
-        root.style.setProperty('--primary', '#2196F3'); seasonBadge.innerText = "Mùa Đông ❄️"; 
+        root.style.setProperty('--primary', '#2196F3'); title.innerText = "Mùa Đông ❄️"; 
     }
 }
 
