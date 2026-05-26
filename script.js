@@ -154,17 +154,41 @@ function showTab(tabId) {
 }
 
 // 4. GAME CARO
+
 let board = ['', '', '', '', '', '', '', '', ''];
 let gameActive = true;
-const winningConditions = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ];
 
+const winningConditions = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+
+// Người chơi đánh
 function makeMove(index) {
-    if (board[index] !== '' || !gameActive) return;
-    board[index] = 'X'; updateBoardUI(); checkWin('X');
-    if (gameActive) { setTimeout(botMove, 400); }
+
+    if (!gameActive || board[index] !== '') return;
+
+    board[index] = 'X';
+
+    updateBoardUI();
+
+    checkWin('X');
+
+    // Bot đánh sau 0.4s
+    if (gameActive) {
+        setTimeout(botMove, 400);
+    }
 }
 
+// BOT
 function botMove() {
+
     if (!gameActive) return;
 
     let emptyCells = board
@@ -175,20 +199,20 @@ function botMove() {
 
     let move = -1;
 
-    // 1. Thắng ngay nếu có thể
+    // 1. Bot thắng nếu có thể
     move = findBestMove('O');
 
-    // 2. Chặn người chơi thắng
+    // 2. Chặn người chơi
     if (move === -1) {
         move = findBestMove('X');
     }
 
-    // 3. Tạo fork cho bot
+    // 3. Tạo fork
     if (move === -1) {
         move = findForkMove('O');
     }
 
-    // 4. Chặn fork của người chơi
+    // 4. Chặn fork
     if (move === -1) {
         move = findForkMove('X');
     }
@@ -200,61 +224,39 @@ function botMove() {
 
     // 6. Ưu tiên góc
     if (move === -1) {
+
         const corners = [0, 2, 6, 8];
+
         const freeCorners = corners.filter(i => board[i] === '');
+
         if (freeCorners.length > 0) {
-            move = freeCorners[Math.floor(Math.random() * freeCorners.length)];
+
+            move = freeCorners[
+                Math.floor(Math.random() * freeCorners.length)
+            ];
         }
     }
 
-    // 7. Đi random
+    // 7. Random
     if (move === -1) {
-        move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
+        move = emptyCells[
+            Math.floor(Math.random() * emptyCells.length)
+        ];
     }
 
+    // Đánh
     if (move !== -1) {
-    board[move] = 'O';
-    updateBoardUI();
-    checkWin('O');    
+
+        board[move] = 'O';
+
+        updateBoardUI();
+
+        checkWin('O');
     }
 }
 
-function findForkMove(player) {
-    for (let i = 0; i < 9; i++) {
-
-        if (board[i] === '') {
-
-            // thử nước đi
-            board[i] = player;
-
-            let winningWays = 0;
-
-            for (let condition of winningConditions) {
-                const [a, b, c] = condition;
-
-                let cells = [board[a], board[b], board[c]];
-
-                let playerCount = cells.filter(cell => cell === player).length;
-                let emptyCount = cells.filter(cell => cell === '').length;
-
-                if (playerCount === 2 && emptyCount === 1) {
-                    winningWays++;
-                }
-            }
-
-            // hoàn tác
-            board[i] = '';
-
-            // fork = tạo ra >=2 đường thắng
-            if (winningWays >= 2) {
-                return i;
-            }
-        }
-    }
-
-    return -1;
-}
-
+// Tìm nước thắng/chặn
 function findBestMove(player) {
 
     for (let condition of winningConditions) {
@@ -292,32 +294,138 @@ function findBestMove(player) {
     return -1;
 }
 
-function checkWin(player) {
-    let roundWon = false;
-    for (let i = 0; i < winningConditions.length; i++) {
-        const [a, b, c] = winningConditions[i];
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) { roundWon = true; break; }
-    }
-    const resultText = document.getElementById('game-result');
-    if (roundWon) {
-        if (player === 'X') {
-            resultText.innerHTML = "🎉 Tuyệt vời! Bạn nhận được mã: <strong>SPEEDEAT10K</strong>";
-            resultText.style.color = "#4CAF50";
-        } else {
-            resultText.innerText = "😢 Máy thắng rồi! Thử lại để nhận quà nhé.";
-            resultText.style.color = "#f44336";
+// Tìm fork
+function findForkMove(player) {
+
+    for (let i = 0; i < 9; i++) {
+
+        if (board[i] === '') {
+
+            // thử nước đi
+            board[i] = player;
+
+            let winningWays = 0;
+
+            for (let condition of winningConditions) {
+
+                const [a, b, c] = condition;
+
+                let cells = [
+                    board[a],
+                    board[b],
+                    board[c]
+                ];
+
+                let playerCount =
+                    cells.filter(cell => cell === player).length;
+
+                let emptyCount =
+                    cells.filter(cell => cell === '').length;
+
+                if (playerCount === 2 && emptyCount === 1) {
+                    winningWays++;
+                }
+            }
+
+            // hoàn tác
+            board[i] = '';
+
+            // fork
+            if (winningWays >= 2) {
+                return i;
+            }
         }
-        gameActive = false; return;
     }
-    if (!board.includes('')) {
-        resultText.innerText = "Hòa nhau! Chơi lại để săn mã nhé.";
-        resultText.style.color = "#ff9800"; gameActive = false;
+
+    return -1;
+}
+
+// Update giao diện bàn cờ
+function updateBoardUI() {
+
+    const cells = document.querySelectorAll('.cell');
+
+    for (let i = 0; i < 9; i++) {
+
+        cells[i].innerText = board[i];
+
+        cells[i].className = 'cell';
+
+        if (board[i] === 'X') {
+            cells[i].classList.add('x');
+        }
+
+        if (board[i] === 'O') {
+            cells[i].classList.add('o');
+        }
     }
 }
 
+// Kiểm tra thắng
+function checkWin(player) {
+
+    let roundWon = false;
+
+    for (let condition of winningConditions) {
+
+        const [a, b, c] = condition;
+
+        if (
+            board[a] &&
+            board[a] === board[b] &&
+            board[a] === board[c]
+        ) {
+            roundWon = true;
+            break;
+        }
+    }
+
+    const resultText =
+        document.getElementById('game-result');
+
+    if (roundWon) {
+
+        if (player === 'X') {
+
+            resultText.innerHTML =
+                "🎉 Tuyệt vời! Bạn nhận được mã: <strong>SPEEDEAT10K</strong>";
+
+            resultText.style.color = "#4CAF50";
+
+        } else {
+
+            resultText.innerText =
+                "😢 Máy thắng rồi! Thử lại để nhận quà nhé.";
+
+            resultText.style.color = "#f44336";
+        }
+
+        gameActive = false;
+        return;
+    }
+
+    // Hòa
+    if (!board.includes('')) {
+
+        resultText.innerText =
+            "Hòa nhau! Chơi lại để săn mã nhé.";
+
+        resultText.style.color = "#ff9800";
+
+        gameActive = false;
+    }
+}
+
+// Reset game
 function resetGame() {
-    board = ['', '', '', '', '', '', '', '', '']; gameActive = true;
-    document.getElementById('game-result').innerText = ''; updateBoardUI();
+
+    board = ['', '', '', '', '', '', '', '', ''];
+
+    gameActive = true;
+
+    document.getElementById('game-result').innerHTML = '';
+
+    updateBoardUI();
 }
 
 // 5. TẠO MÃ QR THANH TOÁN
