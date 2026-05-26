@@ -164,40 +164,57 @@ function makeMove(index) {
     if (gameActive) { setTimeout(botMove, 400); }
 }
 
-function findForkMove(player) {
-    for (let i = 0; i < 9; i++) {
+function botMove() {
+    if (!gameActive) return;
 
-        if (board[i] === '') {
+    let emptyCells = board
+        .map((cell, index) => cell === '' ? index : null)
+        .filter(v => v !== null);
 
-            // thử nước đi
-            board[i] = player;
+    if (emptyCells.length === 0) return;
 
-            let winningWays = 0;
+    let move = -1;
 
-            for (let condition of winningConditions) {
-                const [a, b, c] = condition;
+    // 1. Thắng ngay nếu có thể
+    move = findBestMove('O');
 
-                let cells = [board[a], board[b], board[c]];
+    // 2. Chặn người chơi thắng
+    if (move === -1) {
+        move = findBestMove('X');
+    }
 
-                let playerCount = cells.filter(cell => cell === player).length;
-                let emptyCount = cells.filter(cell => cell === '').length;
+    // 3. Tạo fork cho bot
+    if (move === -1) {
+        move = findForkMove('O');
+    }
 
-                if (playerCount === 2 && emptyCount === 1) {
-                    winningWays++;
-                }
-            }
+    // 4. Chặn fork của người chơi
+    if (move === -1) {
+        move = findForkMove('X');
+    }
 
-            // hoàn tác
-            board[i] = '';
+    // 5. Chiếm trung tâm
+    if (move === -1 && board[4] === '') {
+        move = 4;
+    }
 
-            // fork = tạo ra >=2 đường thắng
-            if (winningWays >= 2) {
-                return i;
-            }
+    // 6. Ưu tiên góc
+    if (move === -1) {
+        const corners = [0, 2, 6, 8];
+        const freeCorners = corners.filter(i => board[i] === '');
+        if (freeCorners.length > 0) {
+            move = freeCorners[Math.floor(Math.random() * freeCorners.length)];
         }
     }
 
-    return -1;
+    // 7. Đi random
+    if (move === -1) {
+        move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    }
+
+    board[move] = 'O';
+    updateBoardUI();
+    checkWin('O');
 }
 
 function findForkMove(player) {
