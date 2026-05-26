@@ -6,7 +6,6 @@
     --card-bg: #ffffff;
 }
 
-/* Thêm ảnh nền đồ ăn mờ ảo */
 body { 
     font-family: 'Nunito', sans-serif; 
     background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop'); 
@@ -18,9 +17,8 @@ body {
     padding: 0; 
 }
 
-/* Làm mờ background của khung chứa chính để làm nổi bật nội dung */
 .container { 
-    background: rgba(255, 255, 255, 0.95); /* Nền trắng hơi trong suốt */
+    background: rgba(255, 255, 255, 0.95); 
     border-radius: 20px; 
     padding: 20px; 
     max-width: 800px; 
@@ -30,7 +28,6 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* Style cho Logo trường */
 .logo-img { 
     width: 80px; 
     height: 80px; 
@@ -44,7 +41,8 @@ header { background: linear-gradient(135deg, var(--primary), #2e7d32); color: wh
 header h1 { margin: 0; font-size: 2.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
 header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 
-.container { max-width: 800px; margin: 0 auto; padding: 0 20px 40px; }
+/* Thêm CSS cho Nhãn Mùa (badge) */
+.season-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 15px; border-radius: 20px; font-size: 0.95rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); margin-top: 5px; }
 
 .tabs { display: flex; justify-content: space-around; margin-bottom: 30px; background: var(--card-bg); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .tab { padding: 15px; cursor: pointer; flex: 1; text-align: center; font-weight: 800; transition: all 0.3s ease; color: #718096; }
@@ -55,35 +53,9 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .section.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-
-/* =========================================
-   PHẦN CSS MỚI SỬA LỖI ẢNH BỊ PHÓNG TO 
-   ========================================= */
-.category-header { 
-    display: flex; 
-    align-items: center; 
-    background-color: #e2e8f0; 
-    border-radius: 12px; 
-    margin-top: 30px; 
-    margin-bottom: 10px; 
-    border-left: 5px solid #f44336; 
-    overflow: hidden; 
-}
-.category-banner-img { 
-    width: 90px; 
-    height: 60px; 
-    object-fit: cover; 
-    margin-right: 15px; 
-}
-.category-title { 
-    margin: 0; 
-    color: #1a202c; 
-    font-size: 1.15rem; 
-    font-weight: 800; 
-    padding: 10px 0; 
-}
-/* ========================================= */
-
+.category-header { display: flex; align-items: center; background-color: #e2e8f0; border-radius: 12px; margin-top: 30px; margin-bottom: 10px; border-left: 5px solid #f44336; overflow: hidden; }
+.category-banner-img { width: 90px; height: 60px; object-fit: cover; margin-right: 15px; }
+.category-title { margin: 0; color: #1a202c; font-size: 1.15rem; font-weight: 800; padding: 10px 0; }
 
 .menu-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #e2e8f0; padding: 12px 0; transition: all 0.2s; }
 .menu-item:hover { transform: translateX(5px); }
@@ -94,14 +66,15 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); filter: brightness(1.1); }
 .btn:active { transform: translateY(0); }
 
-.cart-summary { margin-top: 30px; font-size: 1.1em; background: #f7fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
-.cart-summary p { margin: 10px 0; display: flex; justify-content: space-between; }
-.cart-summary h3 { margin-top: 20px; display: flex; justify-content: space-between; border-top: 2px dashed #cbd5e0; padding-top: 15px; color: var(--primary); }
+/* Đã xóa CSS cũ làm lỗi Hóa Đơn và thay bằng cấu trúc mới */
+.cart-summary { margin-top: 30px; font-size: 1.05em; background: #f7fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
+.summary-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #e2e8f0; }
+.summary-row:last-of-type { border-bottom: none; }
+.summary-row.total-row { border-top: 2px dashed #cbd5e0; margin-top: 10px; padding-top: 15px; border-bottom: none; }
 
 #minigame-box { text-align: center; padding: 20px; border: 3px dashed var(--primary); border-radius: 15px; background: #f0fff4; }
 .badge { background: #ff9800; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; vertical-align: middle; margin-left: 10px; }
 
-/* Khu vực Game */
 .game-nav { margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .board { display: grid; grid-template-columns: repeat(3, 80px); gap: 5px; justify-content: center; margin: 20px auto; }
 .cell { width: 80px; height: 80px; background: white; border: 2px solid #cbd5e0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: background 0.2s;}
@@ -109,6 +82,5 @@ header p { margin-top: 10px; opacity: 0.9; font-size: 1.1rem; }
 .cell.x { color: #f44336; }
 .cell.o { color: #2196F3; }
 
-/* CSS cho popup thông báo nổi */
 #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 30px; padding: 12px 24px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 1rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
 #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
