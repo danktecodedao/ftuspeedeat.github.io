@@ -89,6 +89,8 @@ function renderMenu() {
                 </div>
             `;
         });
+    }); // <-- Đã fix lỗi thiếu dấu đóng vòng lặp ở đây
+} // <-- Đã fix lỗi thiếu dấu đóng hàm ở đây
 
 function addToCart(id) {
     const item = menuData.find(i => i.id === id);
@@ -211,6 +213,7 @@ function resetGame() {
     document.getElementById('game-result').innerText = '';
     updateBoardUI();
 }
+
 // 5. TẠO MÃ QR THANH TOÁN ĐỘNG (Dùng VietQR API)
 function generateQR() {
     if (cart.length === 0) {
@@ -222,8 +225,7 @@ function generateQR() {
     let finalPriceText = document.getElementById('final-price').innerText.replace(/,/g, '');
     let amount = parseInt(finalPriceText);
 
-    // Thông tin tài khoản nhận tiền (BẠN HÃY THAY BẰNG STK CỦA BẠN ĐỂ TEST THỬ)
-    const bankID = "MB"; // Ngân hàng (VD: MB, VCB, TCB)
+    const bankID = "MB"; // Ngân hàng
     const accountNo = "0191899956789"; // Số tài khoản
     const accountName = "Hoang Trung Anh"; // Tên chủ thẻ (Viết không dấu)
     
@@ -231,14 +233,19 @@ function generateQR() {
     const orderCode = "FTU" + Math.floor(Math.random() * 10000); 
     const description = `${orderCode}`;
 
-    // Link API tạo QR của VietQR
-    const qrUrl = `https://img.vietqr.io/image/${bankID}-${accountNo}-compact2.png?amount=${amount}&addInfo=${description}&accountName=${accountName}`;
+    // <-- Đã fix: Mã hóa tên và nội dung để link URL không bị gãy do khoảng trắng -->
+    const safeName = encodeURIComponent(accountName);
+    const safeDescription = encodeURIComponent(description);
+
+    // Link API tạo QR chuẩn xác
+    const qrUrl = `https://img.vietqr.io/image/${bankID}-${accountNo}-compact2.png?amount=${amount}&addInfo=${safeDescription}&accountName=${safeName}`;
 
     // Hiển thị mã QR lên giao diện
     document.getElementById('qr-image').src = qrUrl;
     document.getElementById('qr-content').innerText = description;
     document.getElementById('qr-container').style.display = "block";
 }
+
 window.addEventListener('DOMContentLoaded', () => {
     setSeasonalTheme();
     renderMenu();
