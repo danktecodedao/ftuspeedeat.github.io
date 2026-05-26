@@ -452,8 +452,64 @@ function generateQR() {
     document.getElementById('qr-container').style.display = "block";
 }
 
+// 6. TÍNH NĂNG CẢNH BÁO MẬT ĐỘ (DENSITY RADAR)
+function updateDensityRadar() {
+    const radarCard = document.getElementById('density-radar');
+    const radarBadge = document.getElementById('radar-badge');
+    const waitTimeText = document.getElementById('wait-time');
+    if (!radarBadge) return;
+
+    const currentHour = new Date().getHours(); // Lấy giờ thực tế
+    
+    let status = "Trống trải";
+    let waitTime = 5; 
+    let colorClass = "green";
+
+    // Khung giờ cao điểm: 9h, 12h, 15h
+    const isPeakHour = (currentHour === 9 || currentHour === 12 || currentHour === 15);
+    // Khung giờ lân cận chuẩn bị đông hoặc vừa vãn khách
+    const isNearPeak = (currentHour === 8 || currentHour === 10 || currentHour === 11 || currentHour === 13 || currentHour === 14);
+
+    // Random để tạo biến động giống thực tế
+    const randomFactor = Math.random();
+
+    if (isPeakHour) {
+        if (randomFactor > 0.3) {
+            status = "Quá tải 🔥"; waitTime = Math.floor(Math.random() * 10) + 20; colorClass = "red"; // 20 - 30 phút
+        } else {
+            status = "Khá đông ⚠️"; waitTime = Math.floor(Math.random() * 5) + 15; colorClass = "yellow"; // 15 - 20 phút
+        }
+    } else if (isNearPeak) {
+        if (randomFactor > 0.5) {
+            status = "Khá đông ⚠️"; waitTime = Math.floor(Math.random() * 5) + 10; colorClass = "yellow"; // 10 - 15 phút
+        } else {
+            status = "Bình thường ✅"; waitTime = Math.floor(Math.random() * 3) + 7; colorClass = "green"; // 7 - 10 phút
+        }
+    } else {
+        if (randomFactor > 0.8) {
+            status = "Bình thường ✅"; waitTime = 8; colorClass = "green";
+        } else {
+            status = "Rất vắng 🟢"; waitTime = Math.floor(Math.random() * 3) + 2; colorClass = "green"; // 2 - 5 phút
+        }
+    }
+
+    // Cập nhật giao diện hiển thị
+    radarBadge.innerText = status;
+    radarBadge.className = `radar-badge ${colorClass}`;
+    waitTimeText.innerText = `${waitTime} phút`;
+    waitTimeText.style.color = colorClass === 'red' ? '#f44336' : (colorClass === 'yellow' ? '#ff9800' : '#4CAF50');
+    
+    // Đổi viền khung cho tone sur tone
+    if (colorClass === 'red') radarCard.style.borderLeftColor = '#f44336';
+    else if (colorClass === 'yellow') radarCard.style.borderLeftColor = '#ff9800';
+    else radarCard.style.borderLeftColor = '#4CAF50';
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-    setSeasonalTheme(); renderMenu();
+    setSeasonalTheme(); 
+    renderMenu();
+    updateDensityRadar(); // Kích hoạt Radar ngay khi vào web
+    setInterval(updateDensityRadar, 60000); // Cho Radar tự động quét lại dữ liệu mỗi 60 giây
 });
 
 // Xử lý Đăng nhập ảo (Demo)
