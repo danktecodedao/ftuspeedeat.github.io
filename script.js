@@ -64,6 +64,10 @@ const menuData = [
 
 let cart = [];
 
+// Dữ liệu hạng thẻ mặc định
+let currentDiscountRate = 0.15; // 15%
+let currentTierName = "Hạng Vàng";
+
 function showToast(message) {
     const toast = document.getElementById("toast");
     if(toast) {
@@ -127,9 +131,12 @@ function updateCart() {
         `;
     });
 
-    const discount = totalPrice * 0.05; 
+    const discount = totalPrice * currentDiscountRate; 
     const finalPrice = totalPrice - discount;
 
+    document.getElementById('discount-label').innerText = `(${currentDiscountRate * 100}%)`;
+    // (Các dòng update số tiền VNĐ bên dưới giữ nguyên)
+    
     document.getElementById('total-calo').innerText = totalCalo;
     document.getElementById('total-price').innerText = totalPrice.toLocaleString();
     document.getElementById('discount').innerText = discount.toLocaleString();
@@ -503,6 +510,36 @@ function updateDensityRadar() {
     if (colorClass === 'red') radarCard.style.borderLeftColor = '#f44336';
     else if (colorClass === 'yellow') radarCard.style.borderLeftColor = '#ff9800';
     else radarCard.style.borderLeftColor = '#4CAF50';
+}
+
+// 7. CÁC HÀM XỬ LÝ NÂNG CẤP HẠNG THÀNH VIÊN
+function openUpgradeModal() {
+    document.getElementById('upgrade-modal').style.display = 'flex';
+}
+
+function closeUpgradeModal() {
+    document.getElementById('upgrade-modal').style.display = 'none';
+}
+
+function setMembership(tierName, discountRate) {
+    // Cập nhật dữ liệu
+    currentTierName = tierName;
+    currentDiscountRate = discountRate;
+    
+    // Đổi tên trên Header
+    document.getElementById('user-tier-text').innerText = tierName;
+    
+    // Gọi lệnh tính lại toàn bộ giỏ hàng ngay lập tức
+    updateCart(); 
+    
+    // Đóng cửa sổ và báo hiệu
+    closeUpgradeModal();
+    
+    if (discountRate > 0) {
+        showToast(`🎉 Đã nâng cấp lên ${tierName}! Giảm giá ${discountRate * 100}%`);
+    } else {
+        showToast(`Hủy hạng thẻ thành công.`);
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
