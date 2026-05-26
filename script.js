@@ -165,12 +165,39 @@ function makeMove(index) {
 }
 
 function botMove() {
+    if (!gameActive) return;
     let emptyCells = [];
     for (let i = 0; i < 9; i++) { if (board[i] === '') emptyCells.push(i); }
-    if (emptyCells.length > 0) {
-        let randomIdx = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        board[randomIdx] = 'O'; updateBoardUI(); checkWin('O');
+    if (emptyCells.length === 0) return;
+
+    // 1. TẤN CÔNG: Kiểm tra xem Máy (O) có nước nào để thắng luôn không
+    let move = findBestMove('O');
+    
+    // 2. PHÒNG THỦ: Nếu không thể thắng, xem Người (X) có sắp thắng không để chặn lại
+    if (move === -1) {
+        move = findBestMove('X');
     }
+    
+    // 3. NGẪU NHIÊN: Nếu chưa có gì nguy hiểm, ưu tiên đánh vào GIỮA, nếu không thì đánh bừa
+    if (move === -1) {
+        if (board[4] === '') move = 4; // Chiếm ô trung tâm
+        else move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    }
+
+    board[move] = 'O'; 
+    updateBoardUI(); 
+    checkWin('O');
+}
+
+// Hàm phụ trợ giúp con Bot "quét" bàn cờ tìm nước đi sinh tử
+function findBestMove(player) {
+    for (let i = 0; i < winningConditions.length; i++) {
+        const [a, b, c] = winningConditions[i];
+        if (board[a] === player && board[b] === player && board[c] === '') return c;
+        if (board[a] === player && board[c] === player && board[b] === '') return b;
+        if (board[b] === player && board[c] === player && board[a] === '') return a;
+    }
+    return -1; // Trả về -1 nếu không có nước đi quyết định
 }
 
 function updateBoardUI() {
