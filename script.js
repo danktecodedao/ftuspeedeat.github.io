@@ -253,10 +253,6 @@ function findForkMove(player) {
     return -1;
 }
 
-setTimeout(() => {
-   botMove();
-}, 500);
-
 function checkWin(player) {
     let roundWon = false;
     for (let i = 0; i < winningConditions.length; i++) {
